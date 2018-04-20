@@ -1,0 +1,40 @@
+---
+title: 'Developing Data Products: Interactive Map'
+author: "Seo-yeon Lim"
+date: "April 20, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1. Load leaflet package
+```{r}
+suppressWarnings(library(leaflet))
+```
+
+2. Create a dataframe with coordinates of locations
+```{r}
+chicagoLatLong <- data.frame(
+        lat = c(41.8796, 41.882802, 41.867572),
+        lng = c(-87.6237, -87.619392, -87.614038)
+        )
+```
+
+3. Create a vector with direct links to the places
+```{r}
+chicagoplaces <- c("<a href='http://www.artic.edu/'>The Art Institute of Chicago</a>",
+        "<a href='https://www.cityofchicago.org/city/en/depts/dca/supp_info/chicago_s_publicartcloudgateinmillenniumpark.html'>Cloud Gate, Chicago</a>",
+        "<a href='https://www.sheddaquarium.org/'>Shedd Aquarium</a>")
+```
+
+4. Make an interactive map 
+```{r}
+chicagomap <- chicagoLatLong %>%
+        leaflet() %>%
+        addTiles() %>%
+        addMarkers(popup=chicagoplaces)
+
+chicagomap
+```
+
