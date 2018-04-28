@@ -1,0 +1,38 @@
+---
+title: "Developing Data Products Week 3 Project"
+author: "Seo-yeon Lim"
+date: "April 28, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+For this project, I will create a choropleth map using *USArrests* dataset from the *datasets* package. The number represented of each variable is arrests per 100,000 residents. 
+
+## Load necessary packages and dataset for the project
+```{r}
+suppressMessages(suppressWarnings(library(plotly)))
+library(datasets)
+data(USArrests)
+```
+
+## Choropleth map setup
+```{r}
+state_crime <- data.frame(State = state.abb, Murder = as.vector(USArrests[,1]), Assault = as.vector(USArrests[,2]), UrbanPop = as.vector(USArrests[,3]), Rape = as.vector(USArrests[,4]))
+
+state_crime$hover <- with(state_crime, paste(State, '<br>', "Murder:", Murder, '<br>', "Assault:", Assault, '<br>', "Rape:", Rape))
+
+borders <- list(color=toRGB("red"))
+
+st_list <- list(scope='usa', 
+                projection = list(type= 'albers usa'), 
+                showlakes = TRUE, lakecolor= toRGB('white'))
+```
+
+## Choropleth map final product
+```{r}
+result <- plot_ly(z=~state_crime$UrbanPop, text=~state_crime$hover, locations = ~state_crime$State, type = 'choropleth', locationmode = 'USA-states', color = state_crime$UrbanPop, colors= 'Purples', marker = list(line=borders))%>%  colorbar(title = "Urban Population Percentage (%)") %>%
+layout(title = 'Violent Crime Rates by US States (1973)', geo = st_list)
+```
+
