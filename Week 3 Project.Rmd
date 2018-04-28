@@ -34,5 +34,7 @@ st_list <- list(scope='usa',
 ```{r}
 result <- plot_ly(z=~state_crime$UrbanPop, text=~state_crime$hover, locations = ~state_crime$State, type = 'choropleth', locationmode = 'USA-states', color = state_crime$UrbanPop, colors= 'Purples', marker = list(line=borders))%>%  colorbar(title = "Urban Population Percentage (%)") %>%
 layout(title = 'Violent Crime Rates by US States (1973)', geo = st_list)
+
+result
 ```
 
