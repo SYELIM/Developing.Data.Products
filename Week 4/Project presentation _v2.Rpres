@@ -1,0 +1,46 @@
+Assault Arrest prediction from Urban Population Percentage
+========================================================
+author: Seo-yeon Lim
+date:  May 5, 2018
+autosize: true
+
+Introduction
+========================================================
+
+For this project, I used the *Violent Crime Rates by US States* dataset from *datasets* package. There total 50 observations (50 states) and 4 variables:
+
+
+1. Murder: Murder arrests per 100,000 residents
+
+2. Assault: Assault arrests per 100,000 residents
+
+3. UrbanPop: Percent urban population
+
+4. Rape: Rape arrests per 100,000 residents.
+
+Data Summary
+========================================================
+
+```{r}
+head(USArrests, 5)
+tail(USArrests, 5)
+```
+
+About the application
+========================================================
+
+
+This application predicts the number of assault arrests given the urban population percentage. Using the slidebar on the left, it is possible to set an urban population percentage that the user want to check, and the predicted arrests value will be shown on the bottom right. 
+The application can be found in the following link:
+
+- <https://syelim.shinyapps.io/project_week4/>.
+
+ui.R code and server.R code can be found in my Github account:
+
+- <https://github.com/SYELIM/Developing.Data.Products/tree/gh-pages/Week%204>
+
+Application Example:
+========================================================
+
+![](fig_for_project.png)
+
